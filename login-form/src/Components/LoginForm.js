@@ -1,7 +1,7 @@
 import React ,{useState} from 'react'
 
 function LoginForm({Login, error}) { // This is destructuring with props passed in as an object
-   // our local details for login
+   // our local details for login in useState hook
     const [details, setDetails] = useState({name:"", email:"", password:""});
    
     // creating a function for submiting our login and callin the login function passed as props and  we passin details
@@ -14,7 +14,7 @@ function LoginForm({Login, error}) { // This is destructuring with props passed 
         <form onSubmit={submitHandler}>
             <div className="form-inner">
                 <h2>Login</h2>
-                {/*ERROR!*/}
+               
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" id="name" onChange={ e => setDetails({...details, name: e.target.value})} value={details.name}/>
@@ -28,9 +28,13 @@ function LoginForm({Login, error}) { // This is destructuring with props passed 
                     <input type="password" name="password" id="password" onChange={ e => setDetails({...details, password: e.target.value})} value={details.password}/>
                 </div>
                 <input type="submit" value="LOGIN" />
+
+                {(error !=="") ? ( <div className="error"> {error} </div>)  :" "}
             </div>
         </form>
     )
 }
 
 export default LoginForm
+
+// with bind the input with onChange.
